@@ -1,0 +1,60 @@
+Описание кластера
+=================
+
+Кластер развертывается по шаблону {{ general['template'] }}
+
+Использует следующие сети:
+
+* External: {{ networks['external'] }}
+* Management: {{ networks['management'] }}
+* Private: {{ networks['private'] }}
+
+Всего содержит узлов: {{ nodes|count }}
+
+{%- set count = 0 %}
+{%- for node in nodes %}
+{%- if node['role'] == 'controller' %}
+{%- set count = count + 1 %}
+{%- endif %}
+{%- if loop.last %}
+Из них контроллеров: {{ count }}
+{%- endif %}
+{%- endfor %}
+{%- set count = 0 %}
+{%- for node in nodes %}
+{%- if node['role'] == 'compute' %}
+{%- set count = count + 1 %}
+{%- endif %}
+{%- if loop.last %}
+Compute узлов: {{ count }}
+{%- endif %}
+{%- endfor %}
+{%- set count = 0 %}
+{%- for node in nodes %}
+{%- if node['role'] == 'swift' %}
+{%- set count = count + 1 %}
+{%- endif %}
+{%- if loop.last %}
+Swift узлов: {{ count }}
+{%- endif %}
+{%- endfor %}
+{%- set count = 0 %}
+{%- for node in nodes %}
+{%- if node['role'] == 'cobbler' %}
+{%- set count = count + 1 %}
+{%- endif %}
+{%- if loop.last %}
+И управляющих узлов: {{ count }}
+{%- endif %}
+{%- endfor %}
+{##}
+{%- if flags['use_nagios'] %}
+Установка Nagios включена
+{%- else %}
+Nagios выключен
+{%- endif %}
+{%- if flags['use_swift'] %}
+Установка Swift узлов включена
+{%- else %}
+Установка Swift узлов выключена
+{%- endif %}

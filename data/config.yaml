@@ -1,0 +1,125 @@
+general:
+  template: simple_demo
+  domain: fueltest.local
+  dns1: 8.8.8.8
+  dns2: 8.8.4.4
+
+flags:
+  use_nagios: false
+  use_swift: true
+
+networks:
+  external: 192.168.0.0/24
+  management: 10.0.0.0/24
+  private: 10.0.1.0/24
+
+nodes:
+  - name: fuel-cobbler
+    role: cobbler
+    router: 192.168.0.1
+    interfaces:
+      - name: eth0
+        ip: 192.168.0.10
+      - name: eth1
+        ip: 10.0.0.1
+      - name: eth2
+        promisc: true
+
+  - name: fuel-controller-1
+    role: controller
+    router: 192.168.0.1
+    interfaces:
+      - name: eth0
+        ip: 192.168.0.11
+      - name: eth1
+        ip: 10.0.0.2
+      - name: eth2
+        promisc: true
+
+  - name: fuel-controller-2
+    role: controller
+    router: 192.168.0.1
+    interfaces:
+      - name: eth0
+        ip: 192.168.0.12
+      - name: eth1
+        ip: 10.0.0.3
+      - name: eth2
+        promisc: true
+
+  - name: fuel-controller-3
+    role: controller
+    router: 192.168.0.1
+    interfaces:
+      - name: eth0
+        ip: 192.168.0.13
+      - name: eth1
+        ip: 10.0.0.4
+      - name: eth2
+        promisc: true
+
+  - name: fuel-compute-1
+    role: compute
+    router: 192.168.0.1
+    interfaces:
+      - name: eth0
+        ip: 192.168.0.14
+      - name: eth1
+        ip: 10.0.0.5
+      - name: eth2
+        promisc: true
+
+  - name: fuel-compute-2
+    role: compute
+    router: 192.168.0.1
+    interfaces:
+      - name: eth0
+        ip: 192.168.0.15
+      - name: eth1
+        ip: 10.0.0.6
+      - name: eth2
+        promisc: true
+
+  - name: fuel-compute-3
+    role: compute
+    router: 192.168.0.1
+    interfaces:
+      - name: eth0
+        ip: 192.168.0.16
+      - name: eth1
+        ip: 10.0.0.7
+      - name: eth2
+        promisc: true
+
+  - name: fuel-swift-1
+    role: swift
+    router: 192.168.0.1
+    interfaces:
+      - name: eth0
+        ip: 192.168.0.17
+      - name: eth1
+        ip: 10.0.0.8
+      - name: eth2
+        promisc: true
+
+  - name: fuel-swift-2
+    role: swift
+    router: 192.168.0.1
+    interfaces:
+      - name: eth0
+        ip: 192.168.0.18
+      - name: eth1
+        ip: 10.0.0.9
+      - name: eth2
+        promisc: true
+
+  - name: fuel-swift-3
+    role: swift
+    router: 192.168.0.1
+    interfaces:
+      - name: eth0
+        ip: 192.168.0.19
+      - name: eth1
+        ip: 10.0.0.10
+      - name: eth2
+        promisc: true
